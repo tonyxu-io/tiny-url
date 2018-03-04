@@ -1,0 +1,22 @@
+{
+  "name": "tiny-url-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "antd": "^3.2.3",
+    "axios": "^0.18.0",
+    "material-ui": "^0.20.0",
+    "react": "^16.2.0",
+    "react-axios": "^2.0.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1",
+    "valid-url": "^1.0.9"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:3001"
+}
