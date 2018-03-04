@@ -6,15 +6,29 @@
 
 ## Install
 
+Clone Project
+
+```shell
 clone
+```
 
-```cd tiny-url```
+Using npm:
 
-```npm install```
+```shell
+cd tiny-url
+```
 
-```cd client```
+```shell
+npm install
+```
 
-```npm install```
+```shell 
+cd client
+```
+
+```shell
+npm install
+```
 
 ## Usage
 
@@ -22,13 +36,17 @@ clone
 
 ./tiny-url:
 
-```npm start```
+```shell
+npm start
+```
 
 ### Start Client
 
 ./tiny-url/client
 
-```npm start```
+```shell
+npm start
+```
 
 ## Features
 
