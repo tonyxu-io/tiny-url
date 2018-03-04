@@ -1,27 +1,34 @@
 # A TinyURL Implementation using React and Express
 
+## Prerequisite
+
+- Node.js
+
 ## Install
 
 clone
 
-cd tiny-url
+```cd tiny-url```
 
-npm install
+```npm install```
 
-cd client
+```cd client```
 
-npm install
+```npm install```
 
 ## Usage
 
 ### Start Express Server
 
 ./tiny-url:
-npm start
+
+```npm start```
 
 ### Start Client
+
 ./tiny-url/client
-npm start
+
+```npm start```
 
 ## Features
 
