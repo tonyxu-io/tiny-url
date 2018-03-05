@@ -8,3 +8,4 @@ build
 
 # misc
 .DS_Store
+db.json

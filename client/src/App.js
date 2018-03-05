@@ -38,12 +38,10 @@ class App extends Component {
       modalOpen: false
     }
     this.handleUrlUpdate = this.handleUrlUpdate.bind(this)
+    this.handleUrlSubmit = this.handleUrlSubmit.bind(this)
   }
 
   componentDidMount() {
-    // fetch('/urls')
-    //   .then(res => res.json())
-    //   .then(urls => this.setState({ urls: urls.data }));
 
     axios.get('urls')
       .then(res => {
@@ -72,10 +70,16 @@ class App extends Component {
     this.setState({
       urls: urls
     })
-    axios.put(`urls/${id}`, {"url": event.target.value})
+  }
+
+  handleUrlSubmit(id) {
+    let updatedUrl = _.find(this.state.urls, {id: id})
+    if (validUrl.is_http_uri(_.find(this.state.urls, {id: id}).url) || validUrl.is_https_uri(_.find(this.state.urls, {id: id}).url) || !_.find(this.state.urls, {id: id}).url) {
+      axios.put(`urls/${id}`, {"url": updatedUrl.url})
       .then(res => {
         console.log(res.data)
       })
+    }
   }
 
   handleModalOpen = () => {
@@ -165,14 +169,20 @@ class App extends Component {
                           value={url.url}
                           name={'text-' + url.id}
                           onChange={(event) => this.handleUrlUpdate(event, url.id)}  
+                          errorText={validUrl.is_http_uri(_.find(this.state.urls, {id: url.id}).url) || validUrl.is_https_uri(_.find(this.state.urls, {id: url.id}).url) || !_.find(this.state.urls, {id: url.id}).url ? null : 'Url is invalid'}
                         />
                       </TableRowColumn>
                       <TableRowColumn>
                         <FlatButton 
-                          label="DELETE" 
-                          secondary={true} 
-                          onClick = {() => this.handleDelete(url.id)}
+                          label="UPDATE" 
+                          primary={true} 
+                          onClick = {() => this.handleUrlSubmit(url.id)}
                         />
+                        <FlatButton 
+                        label="DELETE" 
+                        secondary={true} 
+                        onClick = {() => this.handleDelete(url.id)}
+                      />
                       </TableRowColumn>
                     </TableRow>
                 )
