@@ -17,6 +17,7 @@ import AddButton from 'material-ui/svg-icons/content/add'
 import axios from 'axios';
 import Dialog from 'material-ui/Dialog';
 import validUrl from 'valid-url';
+import _ from 'lodash';
 
 class App extends Component {
 
@@ -25,7 +26,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      urls: {},
+      urls: [],
       tableOptions: {
         showCheckboxes: false,
         displayBorder: true
@@ -46,14 +47,14 @@ class App extends Component {
 
     axios.get('urls')
       .then(res => {
+        console.log(res.data.data)
         this.setState({ urls: res.data.data })
       })
   }
 
   handleDelete(id) {
-    console.log(id)
     let urls = this.state.urls
-    delete urls[id]
+    _.remove(urls, {id: id})
     this.setState({
       urls: urls
     })
@@ -65,7 +66,9 @@ class App extends Component {
 
   handleUrlUpdate(event, id) {
     let urls = this.state.urls
-    urls[id] = event.target.value
+    let matchUrl = _.find(urls, {id: id})
+    matchUrl.url = event.target.value
+
     this.setState({
       urls: urls
     })
@@ -88,7 +91,7 @@ class App extends Component {
       axios.post('urls', {'url': this.state.newUrl})
       .then(res => {
         let urls = this.state.urls
-        urls[res.data.data.id] = res.data.data.url
+        urls.push({id: res.data.data.id, url: res.data.data.url})
         this.setState({
           urls: urls,
           modalOpen: false
@@ -143,32 +146,32 @@ class App extends Component {
             displayRowCheckbox = {this.state.tableOptions.showCheckboxes}
             >
             {
-              Object.entries(this.state.urls).map(([id, url]) => {
+              this.state.urls.map((url) => {
                 return (
                     <TableRow 
-                      key={id}
+                      key={url.id}
                       displayBorder = {this.state.tableOptions.displayBorder}
                     >
                       <TableRowColumn>
                         <FlatButton 
-                          label={'http://localhost:3001/s/' + id} 
+                          label={'http://localhost:3001/s/' + url.id} 
                           labelStyle={{textTransform: 'inherit'}}
-                          href={'http://localhost:3001/s/' + id} 
+                          href={'http://localhost:3001/s/' + url.id} 
                           target = "_blank"
                         />
                       </TableRowColumn>
                       <TableRowColumn>
                         <TextField
-                          value={url}
-                          name={'text-' + id}
-                          onChange={(event) => this.handleUrlUpdate(event, id)}  
+                          value={url.url}
+                          name={'text-' + url.id}
+                          onChange={(event) => this.handleUrlUpdate(event, url.id)}  
                         />
                       </TableRowColumn>
                       <TableRowColumn>
                         <FlatButton 
                           label="DELETE" 
                           secondary={true} 
-                          onClick = {() => this.handleDelete(id)}
+                          onClick = {() => this.handleDelete(url.id)}
                         />
                       </TableRowColumn>
                     </TableRow>

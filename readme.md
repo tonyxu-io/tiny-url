@@ -54,3 +54,4 @@ npm start
 * Support edit and delete TinyURL record
 * Support create a tinyURL record
 * Support redirect to longURL from tinyURL
+* Support persistent database using lowdb
