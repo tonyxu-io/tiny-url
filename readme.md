@@ -54,7 +54,7 @@ npm start
 
 ## Features
 
-* Support list all TinyURL (There will be two sample urls provided upon startup)
+* Support list all TinyURL
 * Support edit and delete TinyURL record
 * Support create a tinyURL record
 * Support redirect to longURL from tinyURL
