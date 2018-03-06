@@ -1,5 +1,9 @@
 # A TinyURL Implementation using React and Express
 
+## Demo
+
+![Tiny-URL-Demo](https://raw.githubusercontent.com/yihan-us/storage/master/tiny-url.gif)
+
 ## Prerequisite
 
 - Node.js
