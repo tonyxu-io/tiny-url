@@ -11,15 +11,15 @@ db._.mixin(lodashId)
 
 // We need to set some default values, if the collection does not exist yet
 // We also can store our collection
-let urlCollection = db
-  .get('urls')
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
-  let url = urlCollection
-      .getById(req.params.id)
-      .value()
-  // console.log(url)
+  let url = db
+  .read()
+  .get('urls')
+  .getById(req.params.id)
+  .value()
+
   res.redirect(301, url.url)
 });
 
