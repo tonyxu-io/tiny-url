@@ -2,7 +2,7 @@
 
 ## Demo
 
-![Tiny-URL-Demo](https://raw.githubusercontent.com/yihan-us/storage/master/tiny-url.gif)
+![Tiny-URL-Demo](https://raw.githubusercontent.com/tonyxu-io/storage/master/tiny-url.gif)
 
 ## Prerequisite
 
